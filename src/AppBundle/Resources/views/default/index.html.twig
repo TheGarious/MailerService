@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="description" content="Swiftmailer WebService by Gary HOUBRE">
+	<meta name="author" content="Gary HOUBRE">
+	<meta name="keywords" content="Gary, Houbre, Développeur web, Lyon, SwiftMailer, Symfony" />
+
+
+	<title>{% block title %}Mailer - Démo{% endblock %}</title>
+	<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+
+
+	<script src="https://use.fontawesome.com/2ef3db8df1.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+	<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-119694388-2"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-119694388-3');
+	</script>
+
+
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+	<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/tooltipster/3.3.0/css/tooltipster.min.css">
+
+
+	<style>
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+		}
+
+		.error-div {
+			border: solid 3px red;
+			background: yellow;
+			margin: 20px 0;
+			display: none;
+		}
+
+	</style>
+
+
+</head>
+<body class="">
+{% block body %}
+	<!-- Navigation -->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+		<div class="container">
+			<a class="navbar-brand" href="#">SwiftMailer WebService - Démo</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarResponsive">
+				<ul class="navbar-nav navbar-right ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" target="_blank" href="https://gary-houbre.fr">Developpeur</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" target="_blank" href="https://github.com/TheGarious">Github</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" target="_blank" href="https://www.paypal.me/GaryHOUBRE">Donation</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center">
+				<h1 class="mt-5">SwiftMailer WebService</h1>
+				<p class="lead">Utilitaire pour tester votre configuration de Symfony</p>
+			</div>
+			<div class="error-div col-lg-12 text-center">
+				<label>Indice de l'erreur :</label>
+			</div>
+			<div class="col-lg-12 text-center">
+				<form class="mailerForm">
+					<div class="form-group">
+						<label for="serverKey">Host</label>
+						<input required type="text" class="form-control host" id="host" aria-describedby="emailHelp" placeholder="Host Switftmailer">
+					</div>
+					<div class="form-group">
+						<label for="tokenFirebase">Username</label>
+						<input required type="text" class="form-control username" id="username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="title">Password</label>
+						<input type="text" class="form-control password" id="password" placeholder="Password">
+					</div>
+					<div class="form-group">
+						<label for="title">Port</label>
+						<input type="text" class="form-control port" id="port" placeholder="Port">
+					</div>
+					<div class="form-group">
+						<label for="title">Security</label>
+						<input type="text" class="form-control security" id="security" placeholder="Security">
+					</div>
+					<div class="form-group">
+						<label for="title">A</label>
+						<input type="email" class="form-control to" id="to" placeholder="Adresse Mail">
+					</div>
+					<div class="form-group">
+						<label for="title">De</label>
+						<input type="text" class="form-control from" id="from" placeholder="Adresse Mail">
+					</div>
+					<div class="form-group">
+						<label for="title">Sujet</label>
+						<input type="text" class="form-control subject" id="subject" placeholder="Subject">
+					</div>
+					<div class="form-group">
+						<label for="body">Contenu du mail</label>
+
+						<textarea  class="form-control body" id="body" placeholder="Contenu de la notification"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary send-notif">Envoyer</button>
+				</form>
+			</div>
+		</div>
+
+	</div>
+
+
+{% endblock %}
+{% block javascripts %}
+	<script>
+		$('.mailerForm').on('submit', function (e) {
+			e.preventDefault();
+			$('.error-div').css('display', 'none');
+			$('.error-content').text("");
+			$('.send-notif').prop("disabled",true);
+
+			$.ajax({
+				url: '{{ url('app_default_sendemail') }}',
+				data: {
+					host: 			$('.host').val(),
+					username: 		$('.username').val(),
+					password: 		$('.password').val(),
+					port: 			$('.port').val(),
+					security:		$('.security').val(),
+					to:				$('.to').val(),
+					from:		 	$('.from').val(),
+					subject:		$('.subject').val(),
+					body:			$('.body').val()
+				}
+			})
+				.done(function (response) {
+					console.log(response);
+					if (response.status == 0)
+					{
+						toastr.error("Erreur veuillez vérifier votre connexion internet", "Notification");
+
+					}
+					if (response.status == 401)
+					{
+						toastr.error("Erreur veuillez vérifier les informations", "Notification");
+					}
+					else
+					{
+
+						if (response.response !== null)
+						{
+							if (response.response.success > 0)
+							{
+								toastr.success("Notification a bien été envoyé");
+							}
+							if (response.response.failure > 0)
+							{
+								toastr.warning("Des erreurs sont survenus");
+								$('.error-div').css('display', 'unset');
+								$('.error-content').text(response.response.results[0].error);
+							}
+
+						}
+					}
+					$('.send-notif').prop("disabled",false);
+				})
+			;
+
+		});
+	</script>
+{% endblock %}
+</body>
+</html>
